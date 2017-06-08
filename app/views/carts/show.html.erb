@@ -16,6 +16,7 @@
       </thead>
       <tbody>
         <% @cart_total = 0 %>
+        <% ordercart = cart %>
         <% cart.each do |product_id, details| %>
           <%= render 'item', product_id: product_id, details: details %>
         <% end %>
