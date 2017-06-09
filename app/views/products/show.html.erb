@@ -35,7 +35,41 @@
       <h1>Reviews</h1>
     </header>
 
-    <% @product.reviews.each do |review| %>
+    <% if current_user != nil %>
+
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-1">
+          <%= form_for [@product, @review] do |form| %>
+
+            <% if form.object.errors.any? %>
+              <div class="alert alert-danger">
+                <strong>The following errors prevented saving:</strong>
+                <ul>
+                  <% form.object.errors.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= form.label :description %>
+              <%= form.text_area :description, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :rating %>
+              <%= form.select :rating, [1, 2, 3, 4, 5], class: 'form-control' %>
+            </div>
+
+            <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <% @product.reviews.reverse_each do |review| %>
       <br>
       <%= render 'review', review_info: review %>
 

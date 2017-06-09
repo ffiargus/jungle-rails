@@ -10,4 +10,9 @@
     <td>
       <p><%= review_info.rating %>/5</p>
     </td>
+    <% if current_user == review_info.user %>
+      <td>
+        <%= link_to 'Delete', product_review_path(review_info.product_id, review_info.id), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+      </td>
+    <% end %>
   </tr>
