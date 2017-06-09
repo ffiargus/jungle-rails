@@ -28,4 +28,19 @@
 
   </article>
 
+  <br><br>
+
+  <article class="product-detail">
+    <header class="page-header">
+      <h1>Reviews</h1>
+    </header>
+
+    <% @product.reviews.each do |review| %>
+      <br>
+      <%= render 'review', review_info: review %>
+
+    <% end %>
+
+  </article>
+
 </section>
